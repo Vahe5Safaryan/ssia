@@ -1,0 +1,17 @@
+.about-section {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 20px 50px;
+}
+
+.about-section-text{
+    width: 500px;
+    padding: 20px;
+    border: 2px solid #333;
+    margin: 80px 0;
+}
+
+.about-detail-text{
+    color: red;
+}

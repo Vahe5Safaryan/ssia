@@ -16,13 +16,15 @@ const GalleryCard = (post) => {
                     alt=""
                     className='w-100'
                 />
-                <Heading
-                    type={'p'}
-                    classNames={[
+                <div
+
+                    className={[
                         'vaspur'
                     ]}
                 >
-                    {post[title]}</Heading>
+                    <p>{post[title]}</p>
+
+                </div>
             </div>
 
         </div>

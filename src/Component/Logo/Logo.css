@@ -1,0 +1,17 @@
+.logo-box{
+    display: flex;
+    column-gap: 10px;
+}
+
+@keyframes rotateAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate {
+    animation: rotateAnimation 6s infinite linear;
+}

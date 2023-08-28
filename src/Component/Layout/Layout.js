@@ -3,9 +3,12 @@ import './Layout.css';
 import Logo from "../Logo/Logo";
 import {AiFillFacebook, AiFillInstagram, AiFillYoutube, AiOutlineMenu} from "react-icons/ai";
 import React, {useState} from "react";
+import {useSelector} from "react-redux";
 
 
 const Layout = () => {
+    const {text} = useSelector(state => state.about);
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -38,7 +41,6 @@ const Layout = () => {
                                 <AiOutlineMenu/>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </header>
@@ -47,35 +49,31 @@ const Layout = () => {
                 <Outlet/>
             </main>
 
-            <footer>
+            <footer className='mt-70'>
                 <div className="container">
-                    <div className="row">
-                        <div className="col-xl-3">
+                    <div className="footer-section">
+                        <div className=" footer-logo">
                             <Logo/>
                             <div className='footer-under-text'>
-                                <p>can be used by any application. Pass in the following parameters using an HTTPS
-                                    GET and we’ll return a JSON string array of paragraphs.</p>
+                                <a href="/about"> {text.slice(0, 120)}... </a>
                             </div>
                         </div>
-                        <div className="col-xl-3">
+                        <div className="">
                             <div className='site-map'>
                                 <h4>Site Map</h4>
-                                <NavLink to="/about">About</NavLink>
                                 <div className='site-map-links'>
+                                    <NavLink to="/about">About</NavLink>
                                     <NavLink to="/blog">Blog</NavLink>
                                     <NavLink to="/gallery">Gallery</NavLink>
-                                    <NavLink to="/contact">Contact</NavLink>
-                                    <NavLink to="/application">Application</NavLink>
-                                    <NavLink to="*">Not Found</NavLink>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xl-3">
+                        <div className="footer-social-box">
                             <h4>Social Links</h4>
-                            <div className='social-links'>
-                                <AiFillFacebook/>
-                                <AiFillInstagram/>
-                                <AiFillYoutube/>
+                            <div className='social-links d-flex'>
+                                <a href="https://www.facebook.com/" target='blanc'><AiFillFacebook/></a>
+                                <a href="https://www.instagram.com/" target='blanc'><AiFillInstagram/></a>
+                                <a href="https://www.youtube.com/" target='blanc'><AiFillYoutube/></a>
                             </div>
                         </div>
                     </div>

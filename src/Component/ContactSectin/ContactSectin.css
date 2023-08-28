@@ -1,0 +1,16 @@
+.contact-section{
+    display: flex;
+}
+
+.contact-info{
+    width: 40%;
+}
+
+.contact-form{
+    width: 100%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}

@@ -16,8 +16,8 @@ const sliderSettings = {
     slidesToScroll: 1,
 };
 
-
 const GallerySection = () => {
+
     const dispatch = useDispatch();
     const { data } = useSelector(state => state.gallery);
 
@@ -31,10 +31,12 @@ const GallerySection = () => {
             });
     }, [dispatch]);
 
+    const lastFivePosts = data.slice(Math.max(data.length - 6, 0));
+
     return (
         <div className='container'>
             <Slider {...sliderSettings}>
-                {data.map((post) => (
+                {lastFivePosts.map((post) => (
                     <GalleryCard
                         key={post.id}
                         {...post}

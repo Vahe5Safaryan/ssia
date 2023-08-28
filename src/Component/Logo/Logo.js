@@ -1,4 +1,5 @@
 import {useNavigate} from "react-router";
+import './Logo.css'
 
 const Logo = () => {
     const navigate = useNavigate()
@@ -9,7 +10,10 @@ const Logo = () => {
     }
 
     return <a className='logo' onClick={onClick} href={'/'}>
-        <h2>Logo</h2>
+        <div className='logo-box'>
+            <img src="/Logo/logo1.png" alt=""/>
+            <img className='rotate' src="/Logo/logo2.png" alt=""/>
+        </div>
     </a>
 }
 

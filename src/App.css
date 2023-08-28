@@ -27,7 +27,7 @@ a{
   color: #f00;
 }
 
-h1, h2, h3, h4, h5, p{
+h1, h2, h3, h4, h5, h6, p{
   padding: 0;
   margin: 0;
 }
@@ -36,6 +36,9 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+button{
+  cursor: pointer;
 }
 
 /* Firefox */
@@ -80,4 +83,19 @@ input[type=number] {
 
 .w-100 {
   width: 100%;
+}
+
+
+
+.mt-50{
+  margin-top: 50px;
+}
+.mt-70{
+  margin-top: 70px;
+}
+.mt-90{
+  margin-top: 90px;
+}
+.mt-120{
+  margin-top: 120px;
 }

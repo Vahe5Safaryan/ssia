@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {  } from "react-icons/bi";
 
 const initialState = {
     services: [

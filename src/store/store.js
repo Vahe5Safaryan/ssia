@@ -5,6 +5,8 @@ import blogReducer from "../slices/blogSlice";
 import heroSlice from "../slices/heroSlice";
 import serviceReducer from "../slices/serviceSlice";
 import partnerReducer from "../slices/partnerSlice";
+import contactReducer from "../slices/contactSlice";
+
 
 
 export default configureStore({
@@ -15,6 +17,7 @@ export default configureStore({
         video: heroSlice,
         service: serviceReducer,
         partner: partnerReducer,
+        contact: contactReducer,
     }
 })
 

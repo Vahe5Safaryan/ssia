@@ -2,6 +2,18 @@ header{
     width: 100%;
     background: #A7BE30;
     padding: 10px;
+
+    -webkit-box-shadow: 0 12px 26px -3px rgba(100,100,100,0.67);
+    -moz-box-shadow: 0 12px 26px -3px rgba(100,100,100,0.67);
+    box-shadow: 0 12px 26px -3px rgba(100,100,100,0.67);
+    z-index: 999;
+
+    position: fixed;
+    top: 0;
+}
+
+.wrapper {
+    min-height: 70vh;
 }
 
 .nav{
@@ -27,6 +39,8 @@ header{
 .burger-button{
     color: #fff;
     font-size: 30px;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -148,6 +162,57 @@ footer {
 .social-links svg:hover{
     color: #666;
 }
-
-
+img.selected {
+    outline: 2px solid #fff;
+    border-radius: 50%;
+}
 /* Footer End */
+
+.alert-container {
+    position: fixed;
+    max-width: 1200px;
+    width: 100%;
+    left: 50%;
+    top: 100px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    z-index: 3000;
+}
+
+.alert-message {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.error {
+    color: #ffffff;
+    border-color: red;
+    background: rgba(255,0,0, 0.5);
+}
+
+.success {
+    color: #ffffff;
+    border-color: green;
+    background: rgba(0,255,0, 0.5);
+}
+.account-actions {
+    display: flex;
+    align-items: center;
+}
+.account-button {
+    color: #ffffff;
+    font-size: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+    .footer-section{
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+}

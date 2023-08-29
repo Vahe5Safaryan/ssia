@@ -1,6 +1,7 @@
 .service-box{
     margin: 0 auto;
     align-items: center;
+
 }
 
 .service-box div{
@@ -16,9 +17,15 @@
     width: 100%;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 3px 7px 11px -5px rgba(0,0,0,0.54);
-    -webkit-box-shadow: 3px 7px 11px -5px rgba(0,0,0,0.54);
-    -moz-box-shadow: 3px 7px 11px -5px rgba(0,0,0,0.54);
+    -webkit-box-shadow: 9px 10px 17px -14px rgba(0,0,0,0.67);
+    -moz-box-shadow: 9px 10px 17px -14px rgba(0,0,0,0.67);
+    box-shadow: 9px 10px 17px -14px rgba(0,0,0,0.67);
+    transition: 0.3s;
+}
+.service-cart:hover{
+    -webkit-box-shadow: 15px 15px 27px -13px rgba(0,0,0,0.77);
+    -moz-box-shadow: 15px 15px 27px -13px rgba(0,0,0,0.77);
+    box-shadow: 15px 15px 27px -13px rgba(0,0,0,0.77);
 }
 
 .service-box-img {

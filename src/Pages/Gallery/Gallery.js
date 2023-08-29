@@ -49,35 +49,36 @@ import './Gallery.css'; // Создайте файл стилей для паг�
 
 const Gallery = () => {
     const dispatch = useDispatch();
-    const { data } = useSelector((state) => state.gallery);
-    const itemsPerPage = 12;
+    const {data, perPage, totalItems, currentPage: currentStatePage} = useSelector((state) => state.gallery);
 
-    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = perPage;
+    const [currentPage, setCurrentPage] = useState(currentStatePage)
 
     useEffect(() => {
         axios
-            .get(process.env.REACT_APP_API_URL + '/api/gallery')
+            .get(process.env.REACT_APP_API_URL + '/api/gallery', {
+                params: {
+                    page: currentPage
+                }
+            })
             .then((res) => {
                 dispatch(setGalleryItems(res.data));
             })
             .catch((error) => {
                 console.error(error);
             });
-    }, [dispatch]);
+    }, [dispatch, currentPage]);
 
-    const offset = currentPage * itemsPerPage;
-    const currentItems = data.slice(offset, offset + itemsPerPage);
-    const pageCount = Math.ceil(data.length / itemsPerPage);
-
+    const pageCount = Math.ceil(totalItems / itemsPerPage);
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
     };
 
     return (
-        <div className='container'>
-            <Heading type={'h1'}>- Галерея -</Heading>
+        <div className='container gallery-list'>
+            <Heading type={'h1'}>- Gallery -</Heading>
             <div className='row'>
-                {currentItems.map((post) => (
+                {data.map((post) => (
                     <div key={post.id} className='col-xl-4'>
                         <GalleryCard {...post} />
                     </div>

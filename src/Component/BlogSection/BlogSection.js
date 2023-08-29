@@ -13,7 +13,16 @@ const sliderSettings = {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    arrows: false,
 };
+const responsiveSettings = [
+    {
+        breakpoint: 768,
+        settings: {
+            slidesToShow: 2,
+        },
+    },
+];
 
 const BlogSection = () => {
     const dispatch = useDispatch();
@@ -29,12 +38,15 @@ const BlogSection = () => {
             });
     }, [dispatch]);
 
+    const lastFivePosts = data.slice(Math.max(data.length - 8, 0));
+
     return (
         <div className='container'>
-            <Slider {...sliderSettings}>
-                {data.map((post) => (
+            <Slider {...sliderSettings} responsive={responsiveSettings}>
+                {lastFivePosts.map((post) => (
                     <BlogCard
                         key={post.id}
+                        id={post.id}
                         image={`${process.env.REACT_APP_API_URL}/storage/blog/${post.img}`}
                         title={post.title_hy}
                         description={post.description_hy}
@@ -43,7 +55,6 @@ const BlogSection = () => {
                     />
                 ))}
             </Slider>
-
         </div>
     );
 }

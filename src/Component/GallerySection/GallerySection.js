@@ -1,6 +1,6 @@
 import "./GallerySection.css";
-import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect } from "react";
+import {useDispatch, useSelector} from "react-redux";
+import React, {useEffect} from "react";
 import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -16,13 +16,21 @@ const sliderSettings = {
     slidesToScroll: 1,
 };
 
+const responsiveSettings = [
+    {
+        breakpoint: 768,
+        settings: {
+            slidesToShow: 2,
+        },
+    },
+];
 const GallerySection = () => {
 
     const dispatch = useDispatch();
-    const { data } = useSelector(state => state.gallery);
+    const {data} = useSelector(state => state.gallery);
 
     useEffect(() => {
-        axios.get(process.env.REACT_APP_API_URL+'/api/gallery')
+        axios.get(process.env.REACT_APP_API_URL + '/api/gallery')
             .then((res) => {
                 dispatch(setGalleryItems(res.data));
             })
@@ -31,18 +39,20 @@ const GallerySection = () => {
             });
     }, [dispatch]);
 
-    const lastFivePosts = data.slice(Math.max(data.length - 6, 0));
+    const lastFivePosts = data.slice(Math.max(data.length - 8, 0));
 
     return (
         <div className='container'>
-            <Slider {...sliderSettings}>
-                {lastFivePosts.map((post) => (
-                    <GalleryCard
-                        key={post.id}
-                        {...post}
-                    />
-                ))}
-            </Slider>
+            <div className='gallery-section'>
+                <Slider {...sliderSettings} responsive={responsiveSettings}>
+                    {lastFivePosts.map((post) => (
+                        <GalleryCard
+                            key={post.id}
+                            {...post}
+                        />
+                    ))}
+                </Slider>
+            </div>
         </div>
     );
 }

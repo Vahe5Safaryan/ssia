@@ -1,0 +1,116 @@
+.contact-section{
+    display: flex;
+    column-gap: 20px;
+}
+.contact-section-wrapper {
+    background: #ffffff;
+    padding: 20px 10px 20px 10px;
+}
+.contact-info{
+    max-width: 25%;
+    width: 100%;
+}
+
+.contact-form{
+    max-width: 100%;
+    width: 100%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-info h3{
+    color: #333;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.contact-info-box {
+    margin-top: 20px;
+    padding: 10px 0;
+}
+.contact-info-box h4{
+    color: #333;
+    font-size: 20px;
+    font-weight: 500;
+}
+.contact-info-box h4 svg{
+    color: #A7BE30;
+    font-size: 22px;
+    margin-right: 5px;
+}
+
+.contact-info-box h6{
+    color: #555;
+    font-size: 15px;
+    font-weight: 500;
+    padding-top: 10px;
+}
+
+/* FORM  */
+.contact-form h3{
+    color: #333;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.contact-form form{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.contact-form form{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.contact-form form input{
+    max-width: 100%;
+}
+
+.contact-form form textarea{
+    max-width: 100%;
+    min-height: 150px;
+}
+.contact-form form textarea, .contact-form form input {
+    padding: 16px;
+    outline: none;
+    border: 1px solid #c2c2c2;
+    border-radius: 5px;
+}
+
+.contact-form form textarea::placeholder, .contact-form form input::placeholder {
+    color: #c2c2c2;
+}
+
+.contact-form form textarea:focus, .contact-form form input:focus {
+    border-color: #8f8f8f;
+}
+/* FORM  */
+
+@media only screen and (max-width: 768px) {
+    .contact-section{
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+        padding: 0 15px;
+    }
+    .contact-info{
+        border-bottom: 1px solid #ccc;
+        width: 100%;
+        max-width: 100%;
+    }
+    .contact-info-box {
+         margin-top: 10px;
+        padding: 10px 0;
+    }
+    .contact-form form textarea{
+        height: 100px;
+    }
+}

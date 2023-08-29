@@ -1,8 +1,11 @@
+import ContactSection from "../../Component/ContactSection/ContactSection";
+import Heading from "../../Component/Heading/Heading";
+
 const Contact = () => {
     return (
-        <div>
-            <h1>Contact Page</h1>
-            <hr/>
+        <div className='mt-50'>
+            <Heading type='h1'> - Contact - </Heading>
+            <ContactSection />
         </div>
     )
 }

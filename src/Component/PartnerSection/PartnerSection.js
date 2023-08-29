@@ -10,17 +10,25 @@ const sliderSettings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     arrows: false,
 };
+const responsiveSettings = [
+    {
+        breakpoint: 768,
+        settings: {
+            slidesToShow: 2,
+        },
+    },
+];
 
 const PartnerSection = () => {
     const { partner } = useSelector(state => state.partner);
 
     return (
         <div className='container'>
-            <Slider {...sliderSettings}>
+            <Slider {...sliderSettings} responsive={responsiveSettings}>
                 {partner.map((item) => (
                     <div className='partner-box' key={item.id}>
                         <img src={item.img} alt="partnerImg"/>

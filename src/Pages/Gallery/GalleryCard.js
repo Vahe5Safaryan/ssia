@@ -22,7 +22,7 @@ const GalleryCard = (post) => {
                         'vaspur'
                     ]}
                 >
-                    <p>{post[title]}</p>
+                    <h5>{post[title]}</h5>
 
                 </div>
             </div>

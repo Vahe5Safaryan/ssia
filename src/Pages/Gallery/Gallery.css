@@ -4,13 +4,27 @@
     align-items: center;
     margin-top: 20px;
 }
-
 .pagination a {
     cursor: pointer;
     padding: 10px;
 }
-
 .pagination a.active {
     background-color: #007bff;
     color: white;
+}
+
+.gallery-list .heading{
+    margin-top: 50px;
+}
+
+.galley-card{
+    margin: 0 15px;
+    text-align: center;
+}
+
+.galley-card h5{
+    color: #333;
+    font-size: 15px;
+    font-weight: 600;
+    padding-top: 15px;
 }

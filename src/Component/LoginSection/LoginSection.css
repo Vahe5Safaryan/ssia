@@ -1,0 +1,30 @@
+.login-section{
+    padding: 10px;
+    max-width: 40%;
+    width: 100%;
+}
+
+.reg-section{
+    padding: 10px;
+    max-width: 60%;
+    width: 100%;
+}
+
+.tab-buttons .btn:not(.active) {
+    background-color: #ccc;
+}
+
+.tab-buttons {
+    padding-left: 10px;
+    border-bottom: 1px solid #A7BE30;
+    box-sizing: content-box;
+}
+.tab-buttons .btn {
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.for-company label input{
+    display: none;
+}

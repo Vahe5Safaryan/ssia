@@ -24,60 +24,59 @@ const Home = () => {
 
         <div>
             <Heading type={'h2'}>
-                - {t('About Us')} -
+                - {t('About')} -
             </Heading>
             <AboutSection showImg={false}/>
         </div>
 
         <div>
             <Heading>
-               - What We Do -
+                - {t('What We Do')} -
             </Heading>
             <ServiceSection/>
         </div>
 
         <div>
             <Heading>
-                - Blog -
+                - {t('Blog')} -
             </Heading>
             <BlogSection asSlider={true}/>
         </div>
 
         <div>
             <Heading>
-                - GALLERY -
+                - {t('Gallery')} -
             </Heading>
             <GallerySection/>
         </div>
 
         <div>
             <Heading>
-                - Suggestions and Complaints -
+                - {t('Suggestions and Complaints')} -
             </Heading>
             <FeedbackSection/>
         </div>
 
         <div>
             <Heading>
-                - Contact -
+                - {t('Contact')} -
             </Heading>
             <ContactSectin/>
         </div>
 
         <div>
             <Heading>
-                - Our Partners -
+                - {t('Our Partners')} -
             </Heading>
             <PartnerSection/>
         </div>
 
         {user && <div>
             <Heading>
-                - Application -
+                - {t('Application')} -
             </Heading>
             <ApplicationSection asSlider={true}/>
         </div>}
-
     </>
 }
 export default Home;

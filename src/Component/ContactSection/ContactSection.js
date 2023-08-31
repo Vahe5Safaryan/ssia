@@ -4,6 +4,7 @@ import React, {useState} from "react";
 import {MdMarkEmailRead, MdOutlinePhoneInTalk, MdPlace} from "react-icons/md";
 import axios from "../../helpers/axios";
 import {setMessage as setMessageState} from "../../slices/messageSlice";
+import {useTranslation} from "react-i18next";
 
 const ContactSection = () => {
     const [name, setName] = useState('');
@@ -13,7 +14,9 @@ const ContactSection = () => {
     const [productName, setProductName] = useState('');
     const dispatch = useDispatch()
     const {address, email, phone} = useSelector(state => state.contact);
+    const {t} = useTranslation()
     const handleSubmit = (e) => {
+
         e.preventDefault();
         axios.post('/api/contact-message', {
             name,
@@ -39,26 +42,26 @@ const ContactSection = () => {
             <div className='contact-section'>
 
                 <div className='contact-info'>
-                    <h3>Our Contacts</h3>
+                    <h3>{t('Our Contacts')}</h3>
 
                     <div className='contact-info-box'>
-                        <h4><MdPlace/> Address</h4>
+                        <h4><MdPlace/> {t('Address')}</h4>
                         <h6>{address}</h6>
                     </div>
 
                     <div className='contact-info-box'>
-                        <h4><MdMarkEmailRead/> Email</h4>
+                        <h4><MdMarkEmailRead/> {t('Email')}</h4>
                         <h6>{email}</h6>
                     </div>
 
                     <div className='contact-info-box'>
-                        <h4><MdOutlinePhoneInTalk/> Phone Number</h4>
+                        <h4><MdOutlinePhoneInTalk/> {t('Phone Number')} </h4>
                         <h6>{phone}</h6>
                     </div>
                 </div>
 
                 <div className='contact-form'>
-                    <h3>Contact Us </h3>
+                    <h3> {t('Contact Us')} </h3>
                     <form action="">
                         <input
                             type="text"
@@ -98,7 +101,7 @@ const ContactSection = () => {
                             onChange={e => setMessage(e.target.value)}
                         ></textarea>
 
-                        <button className='button-xl' type="button" onClick={handleSubmit}>Submit Massage</button>
+                        <button className='button-xl' type="button" onClick={handleSubmit}> {t('Submit message')} </button>
                     </form>
                 </div>
             </div>

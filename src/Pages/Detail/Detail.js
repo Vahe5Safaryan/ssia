@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import Heading from "../../Component/Heading/Heading";
 import {useTranslation} from "react-i18next";
+import {GrDocumentExcel, GrDocumentPdf, GrDocumentWord} from "react-icons/gr";
 
 const Detail = ({section}) => {
     const {id} = useParams();
@@ -34,14 +35,17 @@ const Detail = ({section}) => {
                     {detail['description_' + i18n.language]}
                 </p>
             </div>
-            {detail.pdf && <div>
-                <a href={`${process.env.REACT_APP_API_URL}/storage/${section}/files/${detail.pdf}`} target="_blank">gmbrdilos</a>
+            {detail.pdf && <div className='file pdf'>
+                <a href={`${process.env.REACT_APP_API_URL}/storage/${section}/files/${detail.pdf}`} target="_blank"
+                   rel="noreferrer"> <GrDocumentPdf/> Pdf</a>
             </div>}
-            {detail.word && <div>
-                <a href={`${process.env.REACT_APP_API_URL}/storage/${section}/files/${detail.word}`} target="_blank">gmbrdilos</a>
+            {detail.word && <div className='file word'>
+                <a href={`${process.env.REACT_APP_API_URL}/storage/${section}/files/${detail.word}`} target="_blank"
+                   rel="noreferrer"> <GrDocumentWord/> Word</a>
             </div>}
-            {detail.exc && <div>
-                <a href={`${process.env.REACT_APP_API_URL}/storage/${section}/files/${detail.exc}`} target="_blank">gmbrdilos</a>
+            {detail.exc && <div className='file excel'>
+                <a href={`${process.env.REACT_APP_API_URL}/storage/${section}/files/${detail.exc}`} target="_blank"
+                   rel="noreferrer"> <GrDocumentExcel/> Excel</a>
             </div>}
         </div>
     </div>

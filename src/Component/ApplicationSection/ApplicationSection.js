@@ -6,6 +6,7 @@ import ApplicationCard  from "./ApplicationCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import {useTranslation} from "react-i18next";
 
 const sliderSettings = {
     dots: true,
@@ -27,6 +28,10 @@ const ApplicationSection = () => {
     const dispatch = useDispatch();
     const { data } = useSelector(state => state.application);
 
+    const { i18n } = useTranslation()
+    const title = 'title_' + i18n.language
+    const description = 'description_' + i18n.language
+
     useEffect(() => {
         axios.get(process.env.REACT_APP_API_URL+'/api/application')
             .then((res) => {
@@ -35,7 +40,7 @@ const ApplicationSection = () => {
             .catch(error => {
                 console.error("Error fetching data:", error);
             });
-    }, [dispatch]);
+    }, [dispatch, i18n.language ]);
 
     return (
         <div className='container'>
@@ -45,8 +50,8 @@ const ApplicationSection = () => {
                         id={post.id}
                         key={post.id}
                         image={`${process.env.REACT_APP_API_URL}/storage/application/${post.img}`}
-                        title={post.title_hy}
-                        description={post.description_hy}
+                        title={post[title]}
+                        description={post[description]}
                         created_at={post.created_at}
                         showImg={true}
                     />

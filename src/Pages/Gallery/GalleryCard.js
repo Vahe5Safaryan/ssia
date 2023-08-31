@@ -1,4 +1,3 @@
-import Heading from "../../Component/Heading/Heading";
 import React  from "react";
 import {useTranslation} from "react-i18next";
 
@@ -6,6 +5,7 @@ import {useTranslation} from "react-i18next";
 const GalleryCard = (post) => {
     const { i18n } = useTranslation()
     const title = 'title_' + i18n.language
+
     return (
         <div className="galley-card">
             <div
@@ -16,17 +16,10 @@ const GalleryCard = (post) => {
                     alt=""
                     className='w-100'
                 />
-                <div
-
-                    className={[
-                        'vaspur'
-                    ]}
-                >
+                <div className={''}>
                     <h5>{post[title]}</h5>
-
                 </div>
             </div>
-
         </div>
     );
 }

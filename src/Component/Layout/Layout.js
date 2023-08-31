@@ -28,6 +28,11 @@ const Layout = () => {
         document.getElementById('root').classList.toggle('modal-open', !isMenuOpen);
     };
 
+    const changeLanguage = (e) => {
+        i18n.changeLanguage(e);
+        localStorage.setItem('language', e);
+    }
+
     return (
         <>
             <header>
@@ -43,9 +48,9 @@ const Layout = () => {
                                 </NavLink>
                             </div>}
                             <div className='locals d-flex'>
-                                <img src="/LocalsImg/am.png" alt="Locals" className={i18n.language === 'hy' ? 'selected' : ''} onClick={() => i18n.changeLanguage('hy')}/>
-                                <img src="/LocalsImg/ru.png" alt="Locals" className={i18n.language === 'ru' ? 'selected' : ''} onClick={() => i18n.changeLanguage('ru')}/>
-                                <img src="/LocalsImg/en.png" alt="Locals" className={i18n.language === 'en' ? 'selected' : ''} onClick={() => i18n.changeLanguage('en')}/>
+                                <img src="/LocalsImg/am.png" alt="Locals" className={i18n.language === 'hy' ? 'selected' : ''} onClick={() => changeLanguage('hy') }/>
+                                <img src="/LocalsImg/ru.png" alt="Locals" className={i18n.language === 'ru' ? 'selected' : ''} onClick={() => changeLanguage('ru')}/>
+                                <img src="/LocalsImg/en.png" alt="Locals" className={i18n.language === 'en' ? 'selected' : ''} onClick={() => changeLanguage('en')}/>
                             </div>
                             <div className="burger-button" onClick={toggleMenu}>
                                 <AiOutlineMenu/>
@@ -74,25 +79,27 @@ const Layout = () => {
                         <div className=" footer-logo">
                             <Logo/>
                             <div className='footer-under-text'>
-                                <a href="/about"> {text.slice(0, 120)}... </a>
+                                <NavLink to="/about"> { text.slice(0, 120)}... </NavLink>
                             </div>
                         </div>
                         <div className="">
                             <div className='site-map'>
-                                <h4>Site Map</h4>
+                                <h4> {t('Site Map')}</h4>
                                 <div className='site-map-links'>
-                                    <NavLink to="/about">About</NavLink>
-                                    <NavLink to="/blog">Blog</NavLink>
-                                    <NavLink to="/gallery">Gallery</NavLink>
+                                    <NavLink to="/" onClick={toggleMenu}>{t('Home')}</NavLink>
+                                    <NavLink to="/about" onClick={toggleMenu}>{t('About')}</NavLink>
+                                    <NavLink to="/blog" onClick={toggleMenu}>{t('Blog')}</NavLink>
+                                    <NavLink to="/gallery" onClick={toggleMenu}>{t('Gallery')}</NavLink>
+                                    <NavLink to="/contact" onClick={toggleMenu}>{t('Contact')}</NavLink>
                                 </div>
                             </div>
                         </div>
                         <div className="footer-social-box">
-                            <h4>Social Links</h4>
+                            <h4> {t('Social Links')}</h4>
                             <div className='social-links d-flex'>
-                                <a href="https://www.facebook.com/" target='blanc'><AiFillFacebook/></a>
-                                <a href="https://www.instagram.com/" target='blanc'><AiFillInstagram/></a>
-                                <a href="https://www.youtube.com/" target='blanc'><AiFillYoutube/></a>
+                                <a href="https://www.facebook.com/SSIAsociation.am" target='blanc'><AiFillFacebook/></a>
+                                <a href="https://www.instagram.com/ssia.am/" target='blanc'><AiFillInstagram/></a>
+                                {/*<a href="https://www.youtube.com/" target='blanc'><AiFillYoutube/></a>*/}
                             </div>
                         </div>
                     </div>

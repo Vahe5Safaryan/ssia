@@ -3,3 +3,31 @@
     width: 300px;
     height: 300px;
 }
+
+.account-image img{
+    max-width: 300px;
+    width: 100%;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .account-image {
+        border: 1px solid;
+        width: 250px;
+        height: 300px;
+    }
+    .account-image img{
+        max-width: 250px;
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .personal-page-section{
+        flex-direction: column-reverse;
+    }
+    .account-image {
+        border: 1px solid;
+        width: 100%;
+        height: 300px;
+    }
+}

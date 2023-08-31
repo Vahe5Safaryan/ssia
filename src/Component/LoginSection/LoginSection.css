@@ -28,3 +28,20 @@
 .for-company label input{
     display: none;
 }
+
+.image-container img{
+    max-width: 220px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+    .login-or-registration{
+        flex-direction: column;
+    }
+    .login-section {
+        max-width: 100%;
+    }
+    .reg-section {
+        max-width: 100%;
+    }
+}

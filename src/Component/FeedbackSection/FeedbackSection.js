@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import axios from "../../helpers/axios";
 import {setMessage as setMessageState} from "../../slices/messageSlice";
 import {useDispatch} from "react-redux";
+import {useTranslation} from "react-i18next";
 
 
 const FeedbackSection = () => {
@@ -11,6 +12,7 @@ const FeedbackSection = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [message, setMessage] = useState('');
     const dispatch = useDispatch()
+    const {t} = useTranslation()
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         setSelectedImage(URL.createObjectURL(file));
@@ -60,7 +62,7 @@ const FeedbackSection = () => {
                         </div>
 
                         <div className='feedback-input'>
-                            <label>Write title</label>
+                            <label> {t('Write title')}</label>
                             <input
                                 type="text"
                                 placeholder='Title'
@@ -68,7 +70,7 @@ const FeedbackSection = () => {
                                 onChange={e => setTitle(e.target.value)}
                             />
 
-                            <label>Phone Number</label>
+                            <label> {t('Phone Number')} </label>
                             <input
                                 type="number"
                                 placeholder='Phone Number'
@@ -76,7 +78,7 @@ const FeedbackSection = () => {
                                 onChange={e => setPhoneNumber(e.target.value)}
                             />
 
-                            <label>Message</label>
+                            <label> {t('Message')} </label>
                             <textarea
                                 cols="30"
                                 rows="10"
@@ -85,10 +87,9 @@ const FeedbackSection = () => {
                                 onChange={e => setMessage(e.target.value)}
                             ></textarea>
 
-                            <button className='button-xl' type="button" onClick={handleSubmit}>Submit Massage</button>
+                            <button className='button-xl' type="button" onClick={handleSubmit}> {t('Submit message')} </button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>

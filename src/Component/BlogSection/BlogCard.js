@@ -2,7 +2,8 @@ import './BlogCart.css'
 import {NavLink} from "react-router-dom";
 
 
-const BlogCard = ({ title, image, description, created_at, id, showImg=true}) => {
+const BlogCard = ({title, image, description, created_at, id, showImg=true}) => {
+
     return (
         <NavLink to={'/blog/' + id}>
             <div className="blog-card">

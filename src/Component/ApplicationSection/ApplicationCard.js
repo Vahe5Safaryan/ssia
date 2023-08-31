@@ -3,6 +3,8 @@ import {NavLink} from "react-router-dom";
 
 
 const ApplicationCard = ({id, title, image, description, created_at, showImg=true}) => {
+
+
     return (
         <NavLink to={'/application/' + id}>
             <div className="app-card">

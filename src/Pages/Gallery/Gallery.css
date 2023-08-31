@@ -18,7 +18,7 @@
 }
 
 .galley-card{
-    margin: 0 15px;
+    padding: 0 15px;
     text-align: center;
 }
 
@@ -28,3 +28,13 @@
     font-weight: 600;
     padding-top: 15px;
 }
+
+@media only screen and (max-width: 768px) {
+    .galley-card {
+        padding: 0;
+    }
+    .galley-card h5 {
+        padding-top: 5px;
+    }
+}
+

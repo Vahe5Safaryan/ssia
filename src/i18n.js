@@ -4,6 +4,11 @@ import enTranslations from './Locales/en.json';
 import ruTranslations from './Locales/ru.json';
 import hyTranslations from './Locales/hy.json';
 
+let savedLanguage = localStorage.getItem('language');
+if (savedLanguage == null) {
+    savedLanguage = "hy";
+}
+
 i18n
     .use(initReactI18next)
     .init({
@@ -12,10 +17,10 @@ i18n
             ru: { translation: ruTranslations },
             hy: { translation: hyTranslations },
         },
-        lng: 'hy', // Set the default language
-        fallbackLng: 'hy', // Fallback language in case the user's preferred language isn't available
+        lng: savedLanguage || 'hy',
+        fallbackLng: 'hy',
         interpolation: {
-            escapeValue: false, // React already escapes the values, so don't escape again
+            escapeValue: false,
         },
     });
 

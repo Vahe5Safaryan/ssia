@@ -21,13 +21,13 @@ const AboutSection = ({showImg = true}) => {
 
     return (
         <div className={!showImg ? 'about-section' : "container about-section-detail"}
-             style={showImg ? {} : {backgroundImage: `url(${process.env.REACT_APP_API_URL+ '/storage/about/' + bg_img})`}}>
+             style={showImg ? {} : {backgroundImage: bg_img && `url(${process.env.REACT_APP_API_URL+ '/storage/about/' + bg_img})`}}>
             {!showImg && <div className="about-section-decor"/>}
             {showImg && <img src={process.env.REACT_APP_API_URL+ '/storage/about/' + img} alt="AboutImg"/>}
             <div className="container">
                 {showImg ?
                     <div className='about-detail-text'>
-                        {text}
+                        {t(text)}
                     </div> :
                     <div className={'about-section-text'}>
                         <p>{text.slice(0, 400)}</p>

@@ -11,6 +11,7 @@ const ServiceSection = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const dispatch = useDispatch()
     const {i18n} = useTranslation()
+
     useEffect(() => {
         const handleResize = () => {
             setWindowWidth(window.innerWidth);
@@ -31,12 +32,8 @@ const ServiceSection = () => {
         <div className='container'>
             <div className="service-box row justify-center">
                 {services.map((service) => (
-                    <div
-                        key={service.id}
-                        className={`${
-                            windowWidth <= 768 ? 'col-xl-2' : 'col-xl-4'
-                        } ${service.class}`}
-                    >
+                    <div key={service.id}
+                        className={`${ windowWidth <= 768 ? 'col-xl-2' : 'col-xl-4'} ${service.class}`}>
                         <div className='service-cart'>
                             <div className='service-box-img'>
                                 <img src={process.env.REACT_APP_API_URL+ '/storage/services/' + service.img} alt=""/>

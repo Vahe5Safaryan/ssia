@@ -1,43 +1,3 @@
-// import {useDispatch, useSelector} from "react-redux";
-// import React, {useEffect} from "react";
-// import axios from "axios";
-// import Heading from "../../Component/Heading/Heading";
-// import GalleryCard from "./GalleryCard";
-// import {setGalleryItems} from "../../slices/gallerySlice";
-//
-// const Gallery = () => {
-//     const dispatch = useDispatch();
-//     const {data} = useSelector(state => state.gallery);
-//
-//     useEffect(() => {
-//         axios.get(process.env.REACT_APP_API_URL + '/api/gallery')
-//             .then((res) => {
-//                 dispatch(setGalleryItems(res.data));
-//             })
-//             .catch(error => {
-//                 console.error("Error fetching data:", error);
-//             });
-//     }, [dispatch]);
-//
-//     return (
-//         <div className='container'>
-//             <Heading type={'h1'}>- Gallery -</Heading>
-//             <div className="row">
-//                 {data.map((post) => (
-//                     <div key={post.id} className='col-xl-4'>
-//                         <GalleryCard
-//                             {...post}
-//                         />
-//                     </div>
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// }
-// export default Gallery;
-
-
-
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -45,16 +5,22 @@ import Heading from '../../Component/Heading/Heading';
 import GalleryCard from './GalleryCard';
 import { setGalleryItems } from '../../slices/gallerySlice';
 import ReactPaginate from 'react-paginate';
-import './Gallery.css'; // Создайте файл стилей для пагинации
+import './Gallery.css';
+import {useTranslation} from "react-i18next";
 
 const Gallery = () => {
     const dispatch = useDispatch();
     const {data, perPage, totalItems, currentPage: currentStatePage} = useSelector((state) => state.gallery);
-
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const itemsPerPage = perPage;
     const [currentPage, setCurrentPage] = useState(currentStatePage)
+    const {t} = useTranslation()
 
     useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
         axios
             .get(process.env.REACT_APP_API_URL + '/api/gallery', {
                 params: {
@@ -67,6 +33,13 @@ const Gallery = () => {
             .catch((error) => {
                 console.error(error);
             });
+
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, [dispatch, currentPage]);
 
     const pageCount = Math.ceil(totalItems / itemsPerPage);
@@ -76,10 +49,10 @@ const Gallery = () => {
 
     return (
         <div className='container gallery-list'>
-            <Heading type={'h1'}>- Gallery -</Heading>
+            <Heading type={'h1'}>- {t('Gallery')} -</Heading>
             <div className='row'>
                 {data.map((post) => (
-                    <div key={post.id} className='col-xl-4'>
+                    <div className={`${ windowWidth <= 768 ? 'col-xl-2' : 'col-xl-4'}`} key={post.id}>
                         <GalleryCard {...post} />
                     </div>
                 ))}

@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
-    video: "Video/video1.mp4",
+    description_en: "",
+    description_ru: "",
+    description_hy: "",
+    video_url: "",
 }
 
 
@@ -11,8 +13,10 @@ export const heroSlice = createSlice({
     initialState,
     reducers: {
         changeVideo (state, action) {
-            state.text = action.payload
-            state.video = action.payload
+            state.description_en = action.payload.description_en
+            state.description_ru = action.payload.description_ru
+            state.description_hy = action.payload.description_hy
+            state.video_url = action.payload.video_url
         }
     }
 })

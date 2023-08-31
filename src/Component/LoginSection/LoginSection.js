@@ -5,6 +5,7 @@ import axios from "../../helpers/axios";
 import useAuth from "../../hooks/useAuth";
 import Heading from "../Heading/Heading";
 import {NavLink} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const LoginSection = () => {
     const [activeTab, setActiveTab] = useState("company");
@@ -12,7 +13,7 @@ const LoginSection = () => {
     const [loginEmail, setLoginEmail] = useState('')
     const [loginPassword, setLoginPassword] = useState('')
     const navigate = useNavigate();
-
+    const {t} = useTranslation()
     const {user, login} = useAuth()
 
     const [formIndividualData, setFormIndividualData] = useState({
@@ -64,8 +65,6 @@ const LoginSection = () => {
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
-        console.log(e.target)
-        console.log(name, value)
         setFormIndividualData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -82,9 +81,7 @@ const LoginSection = () => {
         <div className='login-or-registration d-flex'>
 
             <div className='login-section'>
-                <Heading
-                    classNames={['text-left', 'p-0']}
-                >Login Section</Heading>
+                <Heading classNames={['text-left', 'p-0']}> {t('Login Section')} </Heading>
 
                 <form onSubmit={onLoginSubmit} className='form-box mt-20'>
                     <input className='form-input mt-20'
@@ -103,29 +100,24 @@ const LoginSection = () => {
                     />
 
                     <div className='my-20'>
-                        <NavLink to="/forgot-password"> Forgot password</NavLink>
+                        <NavLink to="/forgot-password"> {t('Forgot password')} </NavLink>
                     </div>
                     <div>
-                        <button className="btn large-btn btn-primary" type='submit'>Login</button>
+                        <button className="btn large-btn btn-primary" type='submit'> {t('Login')}</button>
                     </div>
                 </form>
             </div>
 
             <div className='reg-section'>
-                <Heading
-                    classNames={['text-left', 'p-0']}
-                >Registration Section</Heading>
+                <Heading classNames={['text-left', 'p-0']}>  {t('Registration Section')} </Heading>
 
                 <div className="tab-buttons mt-20">
                     <button className={"btn large-btn btn-primary" + (activeTab === "company" ? " active" : "")}
-                        onClick={() => onTabChange('company')}
-                    >
-                        Company
+                        onClick={() => onTabChange('company')}> {t('Company')}
                     </button>
+
                     <button className={"btn large-btn btn-primary" + (activeTab === "individual" ? " active" : "")}
-                        onClick={() => onTabChange("individual")}
-                    >
-                        Individual
+                        onClick={() => onTabChange("individual")}> {t('Individual')}
                     </button>
                 </div>
 
@@ -133,8 +125,8 @@ const LoginSection = () => {
                     <div className="for-company">
                         <Heading
                             classNames={['text-left', 'p-0', 'mt-20']}
-                            type={'h3'}
-                        >Register as a company</Heading>
+                            type={'h3'}> {t('Register as a company')}
+                        </Heading>
                         <form onSubmit={handleSubmit} className='form-box mt-20'>
                             <input className='form-input mt-20'
                                    type="text"
@@ -204,10 +196,8 @@ const LoginSection = () => {
                                     </>
                                 )}
                             </div>
-
-
                             <div>
-                                <button className="btn large-btn btn-primary mt-20">Registration</button>
+                                <button className="btn large-btn btn-primary mt-20"> {t('Registration')} </button>
                             </div>
                         </form>
                     </div>
@@ -217,8 +207,8 @@ const LoginSection = () => {
                     <div className="individual">
                         <Heading
                             classNames={['text-left', 'p-0', 'mt-20']}
-                            type={'h3'}
-                        >Register as an individual</Heading>
+                            type={'h3'} > {t('Register as a individual')}
+                        </Heading>
                         <form onSubmit={(e) => handleSubmit(e)} className='form-box mt-20'>
                             <input className='form-input mt-20'
                                    type="text"
@@ -264,7 +254,7 @@ const LoginSection = () => {
                                    onChange={handleInputChange}
                             />
                             <div>
-                                <button className="btn large-btn btn-primary mt-20">Registration</button>
+                                <button className="btn large-btn btn-primary mt-20"> {t('Registration')} </button>
                             </div>
                         </form>
                     </div>

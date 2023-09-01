@@ -3,7 +3,7 @@ import i18n from "../i18n";
 
 const initialState = {
     text: " printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-    img: 'https://www.shutterstock.com/image-vector/black-cartoon-ninja-warrior-nunchaku-600w-1679564848.jpg',
+    img: '',
     bg_img: ""
 }
 

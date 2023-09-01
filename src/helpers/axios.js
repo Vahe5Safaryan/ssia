@@ -28,7 +28,7 @@ axiosInstance.interceptors.response.use(
         if (error.response) {
             const errorMessage = error.response.data.message || "An error occurred.";
             store.dispatch(setMessage({
-                text: errorMessage,
+                text: Array.isArray(errorMessage) ? errorMessage.join(' ') : errorMessage,
                 type: 'error'
             }));
         } else {

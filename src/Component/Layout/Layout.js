@@ -1,7 +1,7 @@
 import {NavLink, Outlet} from 'react-router-dom';
 import './Layout.css';
 import Logo from "../Logo/Logo";
-import {AiFillFacebook, AiFillInstagram, AiFillYoutube, AiOutlineMenu} from "react-icons/ai";
+import {AiFillFacebook, AiFillInstagram, AiOutlineMenu} from "react-icons/ai";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {removeMessage} from "../../slices/messageSlice";
@@ -19,6 +19,7 @@ const Layout = () => {
     useEffect(() => {
         messages.forEach((message) => {
             setTimeout(() => {
+                console.log(message)
                 dispatch(removeMessage(message))
             }, 7000)
         })

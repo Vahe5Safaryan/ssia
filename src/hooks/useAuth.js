@@ -16,7 +16,7 @@ const useAuth = () => {
             axios.get('/api/me').then(response => {
                 dispatch(setAuthUser(response.data))
                 requestSent = false
-            })
+            }).catch(() => {})
         }
     }, [dispatch, user, token]);
 
@@ -36,6 +36,15 @@ const useAuth = () => {
         }
     };
 
+    const loginImmediately = (token, user) => {
+        dispatch(setAuthUser(user))
+        dispatch(setMessage({
+            text: 'You are logged in successfully',
+            type: 'success'
+        }))
+        localStorage.setItem('access_token', token)
+    }
+
     const logout = () => {
         dispatch(setAuthUser(null))
         localStorage.removeItem('access_token')
@@ -50,6 +59,7 @@ const useAuth = () => {
         user,
         login,
         logout,
+        loginImmediately
     };
 };
 

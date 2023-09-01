@@ -29,6 +29,8 @@ const ContactSection = () => {
                 type: 'success',
                 text: 'Message sent successfully'
             }))
+        }).catch(() => {
+
         })
         setName('');
         setEmails('');

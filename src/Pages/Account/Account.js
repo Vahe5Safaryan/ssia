@@ -39,15 +39,20 @@ const Account = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(account);
-        axios.post('/user/' + account.id, {
-            ...account
+
+        const updatedAccount = {
+            ...account,
+            userType: account.type
+        };
+
+        axios.post(process.env.REACT_APP_API_URL+'/api/user/update/' + updatedAccount.id, {
+            ...updatedAccount
         }).then(() => {
             dispatch(setMessage({
                 type: 'success',
                 text: 'Profile updated successfully'
-            }))
-        })
+            }));
+        });
     };
     return <div className='container mt-50'>
         <Heading>- {t('Account Page')} -</Heading>
@@ -95,20 +100,20 @@ const Account = () => {
                        value={account?.phone}
                        onChange={handleInputChange}
                 />
-                <input type="text"
-                       placeholder='HVHH'
-                       className="form-input mt-20"
-                       name='hvhh'
-                       value={account?.hvhh}
-                       onChange={handleInputChange}
-                />
-                <input type="text"
-                       placeholder='Address'
-                       className="form-input mt-20"
-                       name='address'
-                       value={account?.address}
-                       onChange={handleInputChange}
-                />
+                {account && account.type === 1 && <input type="text"
+                        placeholder='HVHH'
+                        className="form-input mt-20"
+                        name='hvhh'
+                        value={account?.hvhh}
+                        onChange={handleInputChange}
+                />}
+                {account && account.type === 1 && <input type="text"
+                        placeholder='Address'
+                        className="form-input mt-20"
+                        name='address'
+                        value={account?.address}
+                        onChange={handleInputChange}
+                />}
                 <div className="divider mt-20"/>
                 <input type="password"
                        placeholder='Enter new password'

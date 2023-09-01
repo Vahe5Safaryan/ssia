@@ -19,6 +19,7 @@ const FeedbackSection = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+
         axios.post('/api/feedback-message', {
             title,
             phone: phoneNumber,
@@ -29,6 +30,8 @@ const FeedbackSection = () => {
                 type: 'success',
                 text: 'Message sent successfully'
             }))
+        }).catch(() => {
+
         })
         setTitle('');
         setPhoneNumber('');

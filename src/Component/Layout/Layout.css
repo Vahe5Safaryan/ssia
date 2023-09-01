@@ -193,13 +193,13 @@ img.selected {
 .error {
     color: #ffffff;
     border-color: red;
-    background: rgba(255,0,0, 0.8);
+    background: rgba(224, 4, 4, 0.9);
 }
 
 .success {
     color: #ffffff;
     border-color: green;
-    background: rgba(0,255,0, 0.8);
+    background: rgba(2, 124, 2, 0.9);
 }
 .account-actions {
     display: flex;

@@ -1,11 +1,13 @@
 import "./LoginSection.css"
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import axios from "../../helpers/axios";
 import useAuth from "../../hooks/useAuth";
 import Heading from "../Heading/Heading";
 import {NavLink} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import FacebookLoginButton from "../../Component/FacebookLogin/FacebookSDK";
+
 
 const LoginSection = () => {
     const [activeTab, setActiveTab] = useState("company");
@@ -29,6 +31,13 @@ const LoginSection = () => {
         logo: selectedImage,
     });
 
+    useEffect(() => {
+        setFormIndividualData((prevData) => ({
+            ...prevData,
+            logo: selectedImage,
+        }));
+    }, [selectedImage]);
+
     if (user) {
         navigate('/account')
         return null
@@ -36,14 +45,18 @@ const LoginSection = () => {
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
-        setSelectedImage(URL.createObjectURL(file));
+        setSelectedImage(file);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/api/register', formIndividualData);
+            const response = await axios.post('/api/register', formIndividualData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
 
             if (response.status === 200) {
                 e.target.reset()
@@ -51,7 +64,6 @@ const LoginSection = () => {
                 localStorage.setItem('access_token', response.data.token)
                 navigate('/account')
 
-                console.log('Form data sent successfully');
             }
         } catch (error) {
             console.error('Error sending form data', error);
@@ -86,7 +98,7 @@ const LoginSection = () => {
                 <form onSubmit={onLoginSubmit} className='form-box mt-20'>
                     <input className='form-input mt-20'
                            type="email"
-                           placeholder='Email'
+                           placeholder={t('Email')}
                            name='email'
                            value={loginEmail}
                            onChange={(e) => setLoginEmail(e.target.value)}
@@ -94,7 +106,7 @@ const LoginSection = () => {
                     <input className='form-input mt-20'
                            type="password"
                            name='password'
-                           placeholder='Password'
+                           placeholder={t('Password')}
                            value={loginPassword}
                            onChange={(e) => setLoginPassword(e.target.value)}
                     />
@@ -180,7 +192,7 @@ const LoginSection = () => {
                             />
                             <div className="image-container mt-20">
                                 {selectedImage ? (
-                                    <img src={selectedImage} alt=""/>
+                                    <img src={URL.createObjectURL(selectedImage)} alt=""/>
                                 ) : (
                                     <>
                                         <label htmlFor="image-input">
@@ -210,6 +222,13 @@ const LoginSection = () => {
                             type={'h3'} > {t('Register as a individual')}
                         </Heading>
                         <form onSubmit={(e) => handleSubmit(e)} className='form-box mt-20'>
+
+                            {/*<FacebookSDK />*/}
+                            {/*<FacebookPlugin />*/}
+
+                            <FacebookLoginButton />
+
+
                             <input className='form-input mt-20'
                                    type="text"
                                    placeholder='Name'

@@ -1,5 +1,5 @@
 import "./FeedbackSection.css";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "../../helpers/axios";
 import {setMessage as setMessageState} from "../../slices/messageSlice";
 import {useDispatch} from "react-redux";
@@ -13,14 +13,20 @@ const FeedbackSection = () => {
     const [message, setMessage] = useState('');
     const dispatch = useDispatch()
     const {t} = useTranslation()
+
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
-        setSelectedImage(URL.createObjectURL(file));
+        setSelectedImage(file);
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         axios.post('/api/feedback-message', {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+
             title,
             phone: phoneNumber,
             description: message,
@@ -42,12 +48,12 @@ const FeedbackSection = () => {
     return <div className='feedback-section-wrapper'>
         <div className='container'>
             <div className='feedback-section'>
-                <form action="" className='feedback-form'>
+                <form  className='feedback-form'>
                     <div className='form-box d-flex'>
 
                         <div className='feedback-upload'>
                             {selectedImage ? (
-                                <img src={selectedImage} alt=""/>
+                                <img src={URL.createObjectURL(selectedImage)} alt=""/>
                             ) : (
                                 <>
                                     <label htmlFor="image-input">

@@ -42,10 +42,12 @@ const ApplicationSection = () => {
             });
     }, [dispatch, i18n.language ]);
 
+    const lastFivePosts = data.slice(Math.max(data.length - 8, 0));
+
     return (
         <div className='container'>
             <Slider {...sliderSettings} responsive={responsiveSettings}>
-                {data.map((post) => (
+                {lastFivePosts.map((post) => (
                     <ApplicationCard
                         id={post.id}
                         key={post.id}

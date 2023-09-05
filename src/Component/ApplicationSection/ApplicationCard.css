@@ -28,8 +28,37 @@
     font-weight: 500;
 }
 
+.slick-prev {
+    left: 90px !important;
+    z-index: 10;
+}
+.slick-next {
+    right: 105px !important;
+    z-index: 10;
+}
+.application-section .slick-prev, .application-section .slick-next {
+    top: 108% !important;
+    transform: translate(0, -50%);
+}
+
+
 @media only screen and (max-width: 768px) {
     .app-card {
         padding: 10px ;
+    }
+}
+
+@media only screen and (max-width: 577px) {
+    .slick-prev {
+        left: 5px !important;
+        z-index: 10;
+    }
+    .slick-next {
+        right: 15px !important;
+        z-index: 10;
+    }
+    .application-section .slick-prev, .application-section .slick-next {
+        top: 105% !important;
+        transform: translate(0, -50%);
     }
 }

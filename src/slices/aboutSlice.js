@@ -2,9 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 import i18n from "../i18n";
 
 const initialState = {
-    text: " printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
+    text: "",
     img: '',
-    bg_img: ""
+    bg_img: "",
+    pdf: ''
 }
 
 export const aboutSlice = createSlice({
@@ -15,6 +16,7 @@ export const aboutSlice = createSlice({
             state.text = action.payload['description_' + i18n.language]
             state.img = action.payload.img
             state.bg_img = action.payload.bg_img
+            state.pdf = action.payload.pdf
         }
     }
 })

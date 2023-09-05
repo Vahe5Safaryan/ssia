@@ -21,25 +21,35 @@ const Application = () => {
     const description = 'description_' + i18n.language
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [showSection, setShowSection] = useState(false)
 
+
+    useEffect(() => {
+        axios.get(process.env.REACT_APP_API_URL + '/api/get-status')
+            .then((res) => {
+                setShowSection(res.data)
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+            });
+    }, [])
 
     useEffect(() => {
         const handleResize = () => {
             setWindowWidth(window.innerWidth);
         };
-
-        axios.get(process.env.REACT_APP_API_URL + '/api/application', {
-            params: {
-                page: currentPage
-            }
-
-        })
-            .then((res) => {
-                dispatch(changeApplication(res.data));
-            })
-            .catch(error => {
-                console.error("Error fetching data:", error);
-            });
+        if (showSection){
+            axios.get(process.env.REACT_APP_API_URL + '/api/application', {
+                params: {
+                    page: currentPage
+                }
+            }).then((res) => {
+                    dispatch(changeApplication(res.data));
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                });
+        }
 
 
         window.addEventListener('resize', handleResize);

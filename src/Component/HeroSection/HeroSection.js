@@ -17,6 +17,8 @@ const HeroSection = () => {
     useEffect(() => {
         axios.get('/api/slider').then((res) => {
             dispatch(changeVideo(res.data.slider_items))
+        }).catch(() => {
+            console.log('Network Error')
         })
 
     }, [dispatch]);

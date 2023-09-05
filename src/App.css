@@ -174,7 +174,7 @@ input[type=number] {
     max-width: 800px;
     width: 100%
 }
-/* Slick Start */
+/* Slick Start ***** */
 .slick-dots li.slick-active button:before {
     opacity: 1;
     color: #A7BE30 !important;
@@ -196,6 +196,27 @@ input[type=number] {
 .slick-dots {
     bottom: -30px !important;
 }
+
+.slick-prev:before {
+    content: '←';
+    color: #A7BE30 !important;
+    font-size: 30px !important;
+    border: 3px solid #fff !important;
+    border-radius: 50px;
+    background: #d4dca4;
+}
+.slick-next:before {
+    content: '←';
+    color: #A7BE30 !important;
+    font-size: 30px !important;
+    border: 3px solid #fff !important;
+    border-radius: 50px;
+    background: #d4dca4;
+}
+/* Slick End ***** */
+
+
+
 
 .text-left {
     text-align: left !important;
@@ -298,4 +319,7 @@ input[type=number] {
 .divider {
     border: 1px solid #c3c3c3;
 }
+
+
+
 

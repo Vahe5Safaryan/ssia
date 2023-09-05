@@ -19,6 +19,8 @@ const ServiceSection = () => {
 
         axios.get('/api/services').then((res) => {
             dispatch(setServices(res.data))
+        }).catch(() => {
+            console.log('Network Error')
         })
 
         window.addEventListener('resize', handleResize);

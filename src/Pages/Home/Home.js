@@ -11,10 +11,26 @@ import ApplicationSection from "../../Component/ApplicationSection/ApplicationSe
 import './Home.css';
 import useAuth from "../../hooks/useAuth";
 import {useTranslation} from "react-i18next";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 
 const Home = () => {
     const {t} = useTranslation();
+
+    const [showSection, setShowSection] = useState(false)
+
+    useEffect(() => {
+        axios.get(process.env.REACT_APP_API_URL + '/api/get-status')
+            .then((res) => {
+                setShowSection(res.data)
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+            });
+    }, [])
+
+
 
     const {user} = useAuth()
     return <>
@@ -71,7 +87,7 @@ const Home = () => {
             <PartnerSection/>
         </div>
 
-        {user && <div>
+        {user && showSection && <div>
             <Heading>
                 - {t('Application')} -
             </Heading>

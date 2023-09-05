@@ -11,3 +11,34 @@
     max-height: 200px;
     object-fit: contain;
 }
+
+
+.slick-prev {
+    left: 90px !important;
+    z-index: 10;
+}
+.slick-next {
+    right: 105px !important;
+    z-index: 10;
+}
+.partner-section .slick-prev, .partner-section .slick-next {
+    top: 120% !important;
+    transform: translate(0, -50%);
+}
+
+
+@media only screen and (max-width: 577px) {
+    .slick-prev {
+        left: 5px !important;
+        z-index: 10;
+    }
+    .slick-next {
+        right: 15px !important;
+        z-index: 10;
+    }
+    .partner-section .slick-prev, .partner-section .slick-next {
+        top: 120% !important;
+        transform: translate(0, -50%);
+    }
+
+}

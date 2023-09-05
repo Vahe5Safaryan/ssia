@@ -12,7 +12,7 @@ const sliderSettings = {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
 };
 const responsiveSettings = [
     {
@@ -28,13 +28,15 @@ const PartnerSection = () => {
 
     return (
         <div className='container'>
-            <Slider {...sliderSettings} responsive={responsiveSettings}>
-                {partner.map((item) => (
-                    <div className='partner-box' key={item.id}>
-                        <img src={item.img} alt="partnerImg"/>
-                    </div>
-                ))}
-            </Slider>
+            <div className='partner-section'>
+                <Slider {...sliderSettings} responsive={responsiveSettings}>
+                    {partner.map((item) => (
+                        <div className='partner-box' key={item.id}>
+                            <img src={item.img} alt="partnerImg"/>
+                        </div>
+                    ))}
+                </Slider>
+            </div>
         </div>
     );
 }
@@ -44,13 +46,3 @@ export default PartnerSection
 
 
 
-
-// useEffect(() => {
-//     axios.get(process.env.REACT_APP_API_URL + '/api/partner')
-//         .then((res) => {
-//             dispatch(setPartnerItems(res.data));
-//         })
-//         .catch(error => {
-//             console.error("Error fetching data:", error);
-//         });
-// }, [dispatch]);

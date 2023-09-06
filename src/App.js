@@ -7,7 +7,7 @@ import About from "./Pages/About/About";
 import Blog from "./Pages/Blog/Blog";
 import Application from "./Pages/Application/Application";
 import Contact from "./Pages/Contact/Contact";
-import NotFound from "./Pages/NotFound/NptFounf";
+import NotFound from "./Pages/NotFound/NotFounf";
 import Gallery from "./Pages/Gallery/Gallery";
 import Detail from "./Pages/Detail/Detail";
 import Login from "./Pages/Login/Login";

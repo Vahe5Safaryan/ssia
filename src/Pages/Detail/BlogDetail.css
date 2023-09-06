@@ -25,11 +25,19 @@
 
 .file {
     font-size: 20px;
-    padding: 5px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    max-width: 150px;
+    width: 100%;
 }
 
+.file a {
+    font-size: 20px;
+    font-weight: 500;
+}
 .file a svg {
     font-size: 25px;
+    margin-right: 10px;
 }
 
 .pdf a svg path {

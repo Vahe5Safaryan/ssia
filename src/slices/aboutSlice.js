@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import i18n from "../i18n";
 
 const initialState = {
-    text: "",
+    text: " ",
     img: '',
     bg_img: "",
     pdf: ''

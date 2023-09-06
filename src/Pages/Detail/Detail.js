@@ -35,15 +35,16 @@ const Detail = ({section}) => {
                     {detail['description_' + i18n.language]}
                 </p>
             </div>
-            {detail.pdf !== null && <div className='file pdf'>
+
+            {detail.pdf && <div className='file pdf'>
                 <a href={`${process.env.REACT_APP_API_URL}/storage/${section}/files/${detail.pdf}`} target="_blank"
-                   rel="noreferrer"> <GrDocumentPdf/> Pdf {detail.pdf}</a>
+                   rel="noreferrer"> <GrDocumentPdf/> Pdf</a>
             </div>}
-            {detail.word !== null && <div className='file word'>
+            {detail.word  && <div className='file word'>
                 <a href={`${process.env.REACT_APP_API_URL}/storage/${section}/files/${detail.word}`} target="_blank"
                    rel="noreferrer"> <GrDocumentWord/> Word</a>
             </div>}
-            {detail.exc !== null && <div className='file excel'>
+            {detail.exc  && <div className='file excel'>
                 <a href={`${process.env.REACT_APP_API_URL}/storage/${section}/files/${detail.exc}`} target="_blank"
                    rel="noreferrer"> <GrDocumentExcel/> Excel</a>
             </div>}

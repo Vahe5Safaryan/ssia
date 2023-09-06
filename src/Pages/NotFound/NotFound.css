@@ -1,0 +1,13 @@
+.notFound{
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.notFound h2{
+    color: #555;
+    font-size: 30px;
+    font-weight: 500;
+
+}

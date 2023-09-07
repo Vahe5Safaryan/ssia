@@ -8,6 +8,8 @@ import {removeMessage} from "../../slices/messageSlice";
 import useAuth from "../../hooks/useAuth";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import {useTranslation} from "react-i18next";
+import axios from "axios";
+import {changeAbout} from "../../slices/aboutSlice";
 
 const Layout = () => {
     const {text} = useSelector(state => state.about);
@@ -16,6 +18,17 @@ const Layout = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const {i18n, t} = useTranslation()
     const {user} = useAuth()
+    const {showSection} = useSelector(state => state.application)
+
+
+    useEffect(() => {
+        axios.get(process.env.REACT_APP_API_URL+'/api/about').then((res) => {
+            dispatch(changeAbout(res.data))
+        }).catch(error => {
+            console.error("Error fetching data:", error);
+        });
+    }, [dispatch, i18n.language]);
+
     useEffect(() => {
         messages.forEach((message) => {
             setTimeout(() => {
@@ -80,7 +93,7 @@ const Layout = () => {
                         <div className=" footer-logo">
                             <Logo/>
                             <div className='footer-under-text'>
-                                <NavLink to="/about"> { text.slice(0, 120)}... </NavLink>
+                                <NavLink to="/about"> {text.slice(0, 120)}... </NavLink>
                             </div>
                         </div>
                         <div className="">
@@ -100,13 +113,13 @@ const Layout = () => {
                             <div className='social-links d-flex'>
                                 <a href="https://www.facebook.com/SSIAsociation.am" target='blanc'><AiFillFacebook/></a>
                                 <a href="https://www.instagram.com/ssia.am/" target='blanc'><AiFillInstagram/></a>
-                                {/*<a href="https://www.youtube.com/" target='blanc'><AiFillYoutube/></a>*/}
                             </div>
                         </div>
                     </div>
                 </div>
             </footer>
 
+            {/* Modal Menu*/}
             {isMenuOpen && (
                 <div className="modal" onClick={toggleMenu}>
                     <div className="modal-content d-flex">
@@ -122,7 +135,7 @@ const Layout = () => {
                             <NavLink to="/blog" onClick={toggleMenu}>{t('Blog')}</NavLink>
                             <NavLink to="/gallery" onClick={toggleMenu}>{t('Gallery')}</NavLink>
                             <NavLink to="/contact" onClick={toggleMenu}>{t('Contact')}</NavLink>
-                            {user && <NavLink to="/application" onClick={toggleMenu}>{t('Application')}</NavLink>}
+                            {user && showSection && <NavLink to="/application" onClick={toggleMenu}>{t('Application')}</NavLink>}
                         </div>
                     </div>
                 </div>

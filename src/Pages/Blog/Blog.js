@@ -44,7 +44,7 @@ const Blog = () => {
     const pageCount = Math.ceil(totalItems / itemsPerPage);
 
     const handlePageChange = ({ selected }) => {
-        setCurrentPage(selected);
+        setCurrentPage(selected + 1);
     };
 
     return (

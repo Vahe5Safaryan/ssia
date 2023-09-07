@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {setGalleryItems} from "../../slices/gallerySlice";
 import GalleryCard from "../../Pages/Gallery/GalleryCard";
+import {NavLink} from "react-router-dom";
 
 const sliderSettings = {
     dots: true,
@@ -47,10 +48,15 @@ const GallerySection = () => {
             <div className='gallery-section'>
                 <Slider {...sliderSettings} responsive={responsiveSettings}>
                     {lastFivePosts.map((post) => (
-                        <GalleryCard
+                        <NavLink
+                            to={'/gallery/'}
                             key={post.id}
-                            {...post}
-                        />
+                            className={'p-10'}
+                        >
+                            <GalleryCard
+                                {...post}
+                            />
+                        </NavLink>
                     ))}
                 </Slider>
             </div>

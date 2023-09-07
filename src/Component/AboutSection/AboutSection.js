@@ -8,23 +8,14 @@ import {useTranslation} from "react-i18next";
 import {GrDocumentPdf} from "react-icons/gr";
 
 const AboutSection = ({showImg = true}) => {
-    const dispatcher = useDispatch()
-    const {i18n, t} = useTranslation()
+    const {t} = useTranslation()
     const {text, img, bg_img, pdf} = useSelector(state => state.about);
-
-    useEffect(() => {
-        axios.get(process.env.REACT_APP_API_URL+'/api/about').then((res) => {
-            dispatcher(changeAbout(res.data))
-        }).catch(error => {
-            console.error("Error fetching data:", error);
-        });
-    }, [dispatcher, i18n.language]);
 
     return (
         <div className={!showImg ? 'about-section' : "container about-section-detail"}
              style={showImg ? {} : {backgroundImage: bg_img && `url(${process.env.REACT_APP_API_URL+ '/storage/about/' + bg_img})`}}>
             {!showImg && <div className="about-section-decor"/>}
-            {showImg && <img src={process.env.REACT_APP_API_URL+ '/storage/about/' + img} alt="AboutImg"/>}
+            {showImg && img && <img src={process.env.REACT_APP_API_URL+ '/storage/about/' + img} alt="AboutImg"/>}
             <div className="container">
                 {showImg ?
                     <div className='about-detail-text '>

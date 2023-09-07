@@ -1,7 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 
+
 const initialState = {
-    address: "Abovyan, S. Erevanyan 56/1",
+    address: "",
     email: "info@ssia.am",
     phone: "055 670 678, 060 670 670",
 }

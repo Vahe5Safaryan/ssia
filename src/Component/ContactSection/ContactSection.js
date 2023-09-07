@@ -13,7 +13,7 @@ const ContactSection = () => {
     const [message, setMessage] = useState('');
     const [productName, setProductName] = useState('');
     const dispatch = useDispatch()
-    const {address, email, phone} = useSelector(state => state.contact);
+    const {email, phone} = useSelector(state => state.contact);
     const {t} = useTranslation()
     const handleSubmit = (e) => {
 
@@ -48,7 +48,7 @@ const ContactSection = () => {
 
                     <div className='contact-info-box'>
                         <h4><MdPlace/> {t('Address')}</h4>
-                        <h6>{address}</h6>
+                        <h6> {t('AddressValue')} </h6>
                     </div>
 
                     <div className='contact-info-box'>

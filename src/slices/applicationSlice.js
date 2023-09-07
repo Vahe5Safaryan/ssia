@@ -5,7 +5,8 @@ const initialState = {
     currentPage: 1,
     perPage: 12,
     totalItems: 0,
-    singleBlog: {}
+    singleBlog: {},
+    showSection: false,
 }
 
 export const applicationSlice = createSlice({
@@ -20,10 +21,13 @@ export const applicationSlice = createSlice({
         },
         setSingleBlog (state, action) {
             state.singleApplication = action.payload
+        },
+        setShowContent (state, action) {
+            state.showSection = action.payload
         }
     }
 })
 
-export const { changeApplication, singleApplication } = applicationSlice.actions
+export const { changeApplication, singleApplication, setShowContent } = applicationSlice.actions
 
 export default applicationSlice.reducer

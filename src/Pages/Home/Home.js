@@ -13,17 +13,18 @@ import useAuth from "../../hooks/useAuth";
 import {useTranslation} from "react-i18next";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {setShowContent} from "../../slices/applicationSlice";
 
 
 const Home = () => {
     const {t} = useTranslation();
-
-    const [showSection, setShowSection] = useState(false)
-
+    const dispatch = useDispatch()
+    const {showSection} = useSelector(state => state.application)
     useEffect(() => {
         axios.get(process.env.REACT_APP_API_URL + '/api/get-status')
             .then((res) => {
-                setShowSection(res.data)
+                dispatch(setShowContent(res.data))
             })
             .catch(error => {
                 console.error("Error fetching data:", error);

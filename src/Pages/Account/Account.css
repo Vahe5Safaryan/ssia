@@ -12,6 +12,11 @@
 }
 
 
+.logout-btn a{
+    width: 150px;
+}
+
+
 @media only screen and (max-width: 800px) {
     .account-image {
         border: 1px solid;

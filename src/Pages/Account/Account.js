@@ -58,14 +58,14 @@ const Account = () => {
         <Heading>- {t('Account Page')} -</Heading>
         <div className="d-flex personal-page-section">
             <div className="bg-white p-20">
-                {account?.type === 1 &&
+                {account?.type == 1 &&
                     <div className='account-image'>
                         <img
                             src={account?.logo ? (process.env.REACT_APP_API_URL + '/storage/users/' + account.logo) : '/feedbackImg/feedback.jpg'}
                             alt={account?.name}/>
                     </div>
                 }
-                <div className="d-flex justify-end">
+                <div className="d-flex justify-end logout-btn">
                     <a href='/' className="btn btn-primary large-btn mt-20" onClick={handleLogout}>
                         {t('Logout')}
                     </a>

@@ -19,90 +19,94 @@ const FeedbackSection = () => {
         setSelectedImage(file);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        axios.post('/api/feedback-message', {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('phone', phoneNumber);
+        formData.append('description', message);
+        formData.append('img', selectedImage);
 
-            title,
-            phone: phoneNumber,
-            description: message,
-            img: selectedImage
-        }).then(() => {
+        try {
+            await axios.post('/api/feedback-message', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
             dispatch(setMessageState({
                 type: 'success',
                 text: 'Message sent successfully'
-            }))
-        }).catch(() => {
+            }));
 
-        })
-        setTitle('');
-        setPhoneNumber('');
-        setMessage('');
-
+            setTitle('');
+            setPhoneNumber('');
+            setMessage('');
+            setSelectedImage(null);
+        } catch (error) {
+            console.error('Error sending message:', error);
+        }
     };
 
-    return <div className='feedback-section-wrapper'>
-        <div className='container'>
-            <div className='feedback-section'>
-                <form  className='feedback-form'>
-                    <div className='form-box d-flex'>
+    return (
+        <div className='feedback-section-wrapper'>
+            <div className='container'>
+                <div className='feedback-section'>
+                    <form className='feedback-form'>
+                        <div className='form-box d-flex'>
+                            <div className='feedback-upload'>
+                                {selectedImage ? (
+                                    <img src={URL.createObjectURL(selectedImage)} alt="" />
+                                ) : (
+                                    <>
+                                        <label htmlFor="image-input">
+                                            <img src="/feedbackImg/feedback.jpg" alt="" />
+                                        </label>
+                                        <input
+                                            type="file"
+                                            id="image-input"
+                                            accept="image/*"
+                                            onChange={handleImageUpload}
+                                            style={{ display: 'none' }}
+                                        />
+                                    </>
+                                )}
+                            </div>
+                            <div className='feedback-input'>
+                                <label> {t('Write title')}</label>
+                                <input
+                                    type="text"
+                                    placeholder='Title'
+                                    value={title}
+                                    onChange={e => setTitle(e.target.value)}
+                                />
 
-                        <div className='feedback-upload'>
-                            {selectedImage ? (
-                                <img src={URL.createObjectURL(selectedImage)} alt=""/>
-                            ) : (
-                                <>
-                                    <label htmlFor="image-input">
-                                        <img src="/feedbackImg/feedback.jpg" alt=""/>
-                                    </label>
-                                    <input
-                                        type="file"
-                                        id="image-input"
-                                        accept="image/*"
-                                        onChange={handleImageUpload}
-                                        style={{display: 'none'}}
-                                    />
-                                </>
-                            )}
+                                <label> {t('Phone Number')} </label>
+                                <input
+                                    type="number"
+                                    placeholder='Phone Number'
+                                    value={phoneNumber}
+                                    onChange={e => setPhoneNumber(e.target.value)}
+                                />
+
+                                <label> {t('Message')} </label>
+                                <textarea
+                                    cols="30"
+                                    rows="10"
+                                    placeholder='Your Text'
+                                    value={message}
+                                    onChange={e => setMessage(e.target.value)}
+                                ></textarea>
+
+                                <button className='button-xl' type="button" onClick={handleSubmit}> {t('Submit message')} </button>
+                            </div>
                         </div>
-
-                        <div className='feedback-input'>
-                            <label> {t('Write title')}</label>
-                            <input
-                                type="text"
-                                placeholder='Title'
-                                value={title}
-                                onChange={e => setTitle(e.target.value)}
-                            />
-
-                            <label> {t('Phone Number')} </label>
-                            <input
-                                type="number"
-                                placeholder='Phone Number'
-                                value={phoneNumber}
-                                onChange={e => setPhoneNumber(e.target.value)}
-                            />
-
-                            <label> {t('Message')} </label>
-                            <textarea
-                                cols="30"
-                                rows="10"
-                                placeholder='Your Text'
-                                value={message}
-                                onChange={e => setMessage(e.target.value)}
-                            ></textarea>
-
-                            <button className='button-xl' type="button" onClick={handleSubmit}> {t('Submit message')} </button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-}
+    );
+};
 
-export default FeedbackSection
+export default FeedbackSection;

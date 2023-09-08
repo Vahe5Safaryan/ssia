@@ -1,13 +1,13 @@
 import "./GallerySection.css";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
-import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {setGalleryItems} from "../../slices/gallerySlice";
 import GalleryCard from "../../Pages/Gallery/GalleryCard";
 import {NavLink} from "react-router-dom";
+import axios from "../../helpers/axios";
 
 const sliderSettings = {
     dots: true,
@@ -32,7 +32,7 @@ const GallerySection = () => {
     const {data} = useSelector(state => state.gallery);
 
     useEffect(() => {
-        axios.get(process.env.REACT_APP_API_URL + '/api/gallery')
+        axios.get('/api/gallery')
             .then((res) => {
                 dispatch(setGalleryItems(res.data));
             })
